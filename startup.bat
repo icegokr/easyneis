@@ -9,12 +9,6 @@ setlocal EnableExtensions EnableDelayedExpansion
 
 title NEIS EVPN/PTL 재설정 스크립트
 
-if not exist C:\NEISPTL (
-    mkdir C:\NEISPTL
-)
-
-cd C:\NEISPTL
-
 PowerShell -nop -NoLogo -ExecutionPolicy bypass ./evpnsetup.ps1
 
 popd

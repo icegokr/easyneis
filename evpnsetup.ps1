@@ -83,39 +83,36 @@ if ($ret) {
 # 일반 - 설정 - 임시 인터넷 파일 - 저장된 페이지의 새 버전 확인(자동으로 -> 웹 페이지를 열 때마다 변경)
 # 일반 - 설정 - 임시 인터넷 파일 - 사용할 디스크 공간(50 -> 330변경)
 # 보안 - 신뢰할수 있는 사이트 - 사용자 지정 수준
-<#
-[void](New-ItemProperty -Path "HKCU:\Software\Policies\Microsoft\Internet Explorer\Restrictions" -Name NoHelpItemSendFeedback -PropertyType Dword /Value 1 -Force);
-REM 팝업차단 해제
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\New Windows" -Name PopupMgr -PropertyType Dword -Value 0 -Force);
-REM Windows Defender SmartScreen 필터 해제
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\PhishingFilter" -Name EnabledV9 -PropertyType Dword -Value 0 -Force);
-REM TLS 모두 사용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name "SecureProtocols" -PropertyType Dword -Value 2688 -Force);
-REM 종료할때 검색기록삭제 체크 해제
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\Privacy" -Name "ClearBrowsingHistoryOnExit" -PropertyType Dword -Value 0 -Force);
-REM 저장된 페이지의 새버전확인 -> 웹페이지를 열때마다
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name "SyncMode5" -PropertyType Dword -Value 3 -Force);
-REM 사용할 디스크 공간 330MB로 설정
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" -Name "ContentLimit" -PropertyType Dword -Value "0x14" -Force);
-REM 사용자 지정 수준 설정 등록
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "CurrentLevel" -PropertyType Dword -Value 0 -Force);
-REM Windows Defender SmartScreen 사용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2301" -PropertyType Dword -Value 3 -Force);
-REM 웹사이트에서 주소 또는 상태표시줄 없이 창을 열도록 허용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2104" -PropertyType Dword -Value 0 -Force);
-REM 크기 및 위치 제한 없이 스크립트 실행 창을 열 수 있습니다.
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2102" -PropertyType Dword -Value 0 -Force);
-REM 팝업 차단 사용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1609" -PropertyType Dword -Value 0 -Force);
-REM 혼합된 콘텐츠 표시
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1809" -PropertyType Dword -Value 3 -Force);
-REM XSS 필터 사용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1409" -PropertyType Dword -Value 3 -Force);
-REM 웹 사이트에서 스크립팅된 창을 사용하여 정보를 요청하도록 허용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2105" -PropertyType Dword -Value 0 -Force);
-REM 프로그램 클립보드 액세스 허용
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1407" -PropertyType Dword -Value 0 -Force);
-REM 보호모드 사용 안함
-[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2500" -PropertyType Dword -Value 3 -Force);
 
-#>
+# 팝업차단 해제
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\New Windows" -Name PopupMgr -PropertyType Dword -Value 0 -Force);
+# Windows Defender SmartScreen 필터 해제
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\PhishingFilter" -Name EnabledV9 -PropertyType Dword -Value 0 -Force);
+# TLS 모두 사용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name "SecureProtocols" -PropertyType Dword -Value 2688 -Force);
+# 종료할때 검색기록삭제 체크 해제
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Internet Explorer\Privacy" -Name "ClearBrowsingHistoryOnExit" -PropertyType Dword -Value 0 -Force);
+# 저장된 페이지의 새버전확인 -> 웹페이지를 열때마다
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings" -Name "SyncMode5" -PropertyType Dword -Value 3 -Force);
+# 사용할 디스크 공간 330MB로 설정
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\5.0\Cache" -Name "ContentLimit" -PropertyType Dword -Value "0x14" -Force);
+# 사용자 지정 수준 설정 등록
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "CurrentLevel" -PropertyType Dword -Value 0 -Force);
+# Windows Defender SmartScreen 사용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2301" -PropertyType Dword -Value 3 -Force);
+# 웹사이트에서 주소 또는 상태표시줄 없이 창을 열도록 허용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2104" -PropertyType Dword -Value 0 -Force);
+# 크기 및 위치 제한 없이 스크립트 실행 창을 열 수 있습니다.
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2102" -PropertyType Dword -Value 0 -Force);
+# 팝업 차단 사용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1609" -PropertyType Dword -Value 0 -Force);
+# 혼합된 콘텐츠 표시
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1809" -PropertyType Dword -Value 3 -Force);
+# XSS 필터 사용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1409" -PropertyType Dword -Value 3 -Force);
+# 웹 사이트에서 스크립팅된 창을 사용하여 정보를 요청하도록 허용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2105" -PropertyType Dword -Value 0 -Force);
+# 프로그램 클립보드 액세스 허용
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "1407" -PropertyType Dword -Value 0 -Force);
+# 보호모드 사용 안함
+[void](New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2" -Name "2500" -PropertyType Dword -Value 3 -Force);
