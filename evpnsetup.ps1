@@ -25,6 +25,29 @@ Write-Host -BackgroundColor Black -ForegroundColor Yellow "Downloading WeGuadia 
 Invoke-WebRequest -Uri https://evpn.ice.go.kr/winsetup_evpn.ice.go.kr.exe -Outfile winsetup_evpn.ice.go.kr.exe
 
 <#
+    기존 프로그램 삭제
+#>
+# nProtect Online Security 삭제
+"C:\Program Files (x86)\INCAInternet UnInstall\nProtect Online Security\nProtectUninstaller.exe"
+# KCaseAgent CPP 삭제
+"C:\Program Files (x86)\Ksign\KCase\Uninstall.exe"
+# WeGuadia SSLplus 삭제
+msiexec /i {65C996CA-5B6B-40A9-BE92-DD7E21B05418}
+
+# SSLplus 서비스 종료 및 삭제
+C:\Windows\System32\net.exe stop sslplusv2
+C:\Windows\System32\sc.exe delete sslplusv2
+C:\Windows\System32\net.exe stop sslplus
+C:\Windows\System32\sc.exe delete sslplus
+
+<#
+    설치프로그램 시작
+#>
+./IEMode_v1.5.bat
+./nos_setup.exe
+./KCaseAgent_Installer.exe
+./winsetup_evpn.ice.go.kr.exe
+<#
     MS Edge용 레지스트리 설정 추가
 #>
 Write-Host -BackgroundColor Black -ForegroundColor Yellow "MS Edge의 환경설정을 진행합니다.";
